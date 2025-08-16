@@ -1,253 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safespring Container Platform - Managed Kubernetes in Sweden</title>
-  <meta name="description" content="Sovereign managed Kubernetes with Swedish data residency, predictable pricing, and expert support." />
-  <meta property="og:title" content="Safespring Container Platform" />
-  <meta property="og:description" content="Sovereign managed Kubernetes with Swedish data residency, predictable pricing, and expert support." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.safespring.com/" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1558494949-ef75ef9c37b9?auto=format&fit=crop&w=1200&q=80" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Safespring Container Platform" />
-  <meta name="twitter:description" content="Sovereign managed Kubernetes with Swedish data residency, predictable pricing, and expert support." />
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1558494949-ef75ef9c37b9?auto=format&fit=crop&w=1200&q=80" />
+  <meta charset="utf-8">
+  <title>Safespring Container Platform — Managed Kubernetes in a Swedish Cloud</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run Kubernetes with confidence in a sovereign Swedish cloud. Managed clusters, SLAs, and expert support with predictable pricing from Safespring.">
+  <meta name="theme-color" content="#0b0d12">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Safespring Container Platform — Managed Kubernetes in a Swedish Cloud">
+  <meta property="og:description" content="Run Kubernetes with confidence in a sovereign Swedish cloud. Managed clusters, SLAs, and expert support with predictable pricing.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&auto=format&fit=crop&w=1600&h=900">
+  <meta property="og:url" content="https://www.safespring.com/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Safespring Container Platform — Managed Kubernetes in a Swedish Cloud">
+  <meta name="twitter:description" content="Managed Kubernetes with sovereign Swedish data residency, SLAs, and expert support.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&auto=format&fit=crop&w=1600&h=900">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --clr-bg: #ffffff;
-      --clr-dark: #0b0d17;
-      --clr-light: #f5f5f5;
-      --clr-primary: #0055ff;
-      --clr-primary-dark: #0040cc;
-      --clr-accent: #00a885;
-      --spacer: clamp(1rem, 2vw, 2rem);
-      --radius: 0.5rem;
-      --transition: 0.3s ease;
+    :root{
+      --bg: #0b0d12;
+      --surface: #11151d;
+      --muted: #1a2030;
+      --text: #e9eef7;
+      --text-dim: #b8c2d6;
+      --brand: #68a0ff;
+      --brand-strong: #2b6cff;
+      --accent: #20e3b2;
+      --focus: #ffe27a;
+      --card-shadow: 0 10px 30px rgba(0,0,0,.25), 0 2px 8px rgba(0,0,0,.2);
+      --radius: 16px;
+      --gutter: clamp(1rem, 3vw, 2rem);
+      --section-pad: clamp(4rem, 10vw, 10rem);
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      line-height: 1.6;
-      color: var(--clr-dark);
-      background: var(--clr-bg);
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{
+      margin:0;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight:300;
+      font-size:1.125em;
+      color:var(--text);
+      line-height:1.65;
     }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
+    h1,h2,h3{
+      margin:0 0 .6em 0;
+      font-family:'Hind', ui-sans-serif, system-ui, Arial, sans-serif;
+      font-weight:300;
+      line-height:1.25;
     }
-    .skip-link:focus {
-      left: var(--spacer);
-      top: var(--spacer);
-      width: auto;
-      height: auto;
-      background: var(--clr-primary);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      z-index: 1000;
+    h1{font-size:clamp(2.4rem, 6vw, 4.2rem)}
+    h2{font-size:clamp(1.8rem, 3.6vw, 2.6rem)}
+    h3{font-size:clamp(1.3rem, 2.2vw, 1.6rem)}
+    p{color:var(--text-dim); max-width:70ch}
+    a{color:var(--brand)}
+    .wrap{max-width:72ch; margin:0 auto; padding:0 var(--gutter)}
+    .section{padding:var(--section-pad) 0}
+    .skip-link{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
     }
-    header {
-      position: absolute;
-      width: 100%;
-      padding: var(--spacer);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
+    .skip-link:focus{
+      position: fixed; left: var(--gutter); top: var(--gutter);
+      width:auto; height:auto; padding:.75rem 1rem; background:var(--focus); color:#111; border-radius:.5rem; z-index:10000;
+      outline:2px solid #111; outline-offset:2px;
     }
-    .logo { font-weight: 700; color: #fff; }
-    .hero {
-      position: relative;
-      background: url('https://images.unsplash.com/photo-1558494949-ef75ef9c37b9?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(180%) blur(8px);
+      background:color-mix(in oklab, var(--bg) 80%, transparent);
+      transition:background .3s ease, box-shadow .3s ease, border-color .3s ease;
+      border-bottom:1px solid color-mix(in oklab, var(--muted), transparent 60%);
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
+    header.scrolled{
+      background:color-mix(in oklab, var(--bg) 94%, black 6%);
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
+      border-bottom-color: color-mix(in oklab, var(--muted), black 10%);
     }
-    .hero-content { position: relative; padding: 0 var(--spacer); max-width: 60rem; }
-    h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin: 0 0 var(--spacer); }
-    h2 { font-size: clamp(1.75rem, 4vw, 3rem); margin-top: 0; }
-    h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
-    p { font-size: clamp(1rem, 2.2vw, 1.2rem); margin: 0 0 var(--spacer); }
-    .btn {
-      display: inline-block;
-      background: var(--clr-primary);
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      transition: background var(--transition);
-    }
-    .btn:hover,
-    .btn:focus-visible { background: var(--clr-primary-dark); }
-    .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-    main { outline: none; }
-    .features { padding: var(--spacer); background: var(--clr-light); }
-    .feature-grid { display: grid; gap: var(--spacer); }
-    .feature {
-      background: #fff;
-      padding: var(--spacer);
-      border-radius: var(--radius);
-      box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity var(--transition), transform var(--transition);
-    }
-    .feature.in-view { opacity: 1; transform: none; }
-    .feature:hover,
-    .feature:focus-within { box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15); }
-    @media(min-width: 48rem) {
-      .feature-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .video-section { padding: var(--spacer); background: var(--clr-bg); }
-    .carousel { position: relative; overflow: hidden; max-width: 60rem; margin: 0 auto; }
-    .track { display: flex; transition: transform var(--transition); }
-    .slide { min-width: 100%; }
-    .slide iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; }
-    .carousel button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--clr-primary);
-      color: #fff;
-      border: none;
-      padding: 0.5rem;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background var(--transition);
-    }
-    .carousel button:hover,
-    .carousel button:focus-visible { background: var(--clr-primary-dark); }
-    .carousel button:focus-visible { outline: 2px solid #fff; }
-    .prev { left: 0.5rem; }
-    .next { right: 0.5rem; }
-    .cta-strip {
-      background: var(--clr-primary);
-      color: #fff;
-      text-align: center;
-      padding: calc(var(--spacer) * 2) var(--spacer);
-    }
-    .cta-strip .btn { margin-top: var(--spacer); }
-    footer { background: var(--clr-dark); color: #fff; text-align: center; padding: var(--spacer); font-size: 0.875rem; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .feature, .track { transition: none; }
-    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.9rem var(--gutter);}
+    .logo{display:inline-flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--text);}
+    .logo-mark{width:28px; height:28px; border-radius:8px; background: linear-gradient(135deg, var(--brand), var(--accent));}
+    .nav-cta{padding:.7rem 1rem; border-radius:999px; text-decoration:none; color:#0b0d12; background:var(--focus);}
+    .hero{position:relative; min-height:100svh; display:grid; place-items:center; overflow:hidden; background:#0b0d12;}
+    .hero::before{content:""; position:absolute; inset:0;
+      background: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&auto=format&fit=crop&w=2400&h=1600') center/cover no-repeat;
+      filter: brightness(70%);
+      z-index:-2;}
+    .hero::after{content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(11,13,18,.85), rgba(11,13,18,.35)); z-index:-1;}
+    .hero h1{max-width:20ch}
+    .subhead{max-width:55ch; margin-top:1rem}
+    .cta-row{display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.75rem}
+    .btn{padding:.9rem 1.25rem; border-radius:999px; text-decoration:none;}
+    .btn-primary{background:linear-gradient(180deg, var(--brand), var(--brand-strong)); color:#fff;}
+    .btn-ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.18)}
+    .features{background:linear-gradient(180deg, var(--bg), var(--surface))}
+    .card-grid{display:grid; gap:2rem; grid-template-columns:1fr;}
+    @media (min-width: 820px){.card-grid{grid-template-columns: repeat(3, 1fr)}}
+    .card{background: var(--muted); border-radius: var(--radius); padding:2rem;}
+    .video-section{background: linear-gradient(180deg, var(--surface), #0d1524 80%);}
+    .video-frame{position:relative; width:100%; aspect-ratio:16/9; border-radius: 12px; overflow:hidden;}
+    .video-frame img{width:100%; height:100%; object-fit:cover;}
+    .play-badge{position:absolute; bottom:1rem; left:1rem; padding:.6rem .9rem; border-radius:999px; background:rgba(0,0,0,.55); color:#fff;}
+    .cta-strip{background: linear-gradient(90deg, var(--brand-strong), var(--accent)); color:#0b0d12;}
+    .cta-box{display:flex; flex-direction:column; gap:1rem;}
+    @media (min-width:800px){.cta-box{flex-direction:row; justify-content:space-between; align-items:center}}
+    footer{background:#090b10; color:var(--text-dim);}
+    .reveal{opacity:0; transform: translateY(24px) scale(.98);}
+    .reveal.in-view{opacity:1; transform:none; transition: opacity .7s, transform .7s;}
   </style>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Safespring",
-      "url": "https://www.safespring.com"
-    }
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header>
-    <div class="logo" aria-label="Safespring logo">Safespring</div>
+  <header id="top">
+    <nav class="nav wrap">
+      <a href="#top" class="logo"><span class="logo-mark"></span><span>Safespring</span></a>
+      <a class="nav-cta" href="#video">Book a demo</a>
+    </nav>
   </header>
-  <section class="hero" role="img" aria-label="Rows of servers in a data center">
-    <div class="hero-content">
-      <h1>Sovereign Kubernetes, simplified</h1>
-      <p>Run containers on a Swedish platform with guaranteed data residency, predictable pricing, and 24/7 experts.</p>
-      <a href="#videos" class="btn" role="button">Book a demo</a>
-    </div>
-  </section>
   <main id="main">
-    <section class="features" aria-label="Key benefits">
-      <h2>Why our container platform?</h2>
-      <div class="feature-grid">
-        <article class="feature" tabindex="0">
-          <h3>Sovereign &amp; compliant</h3>
-          <p>Your data stays in Sweden, helping you meet GDPR and national regulations.</p>
-        </article>
-        <article class="feature" tabindex="0">
-          <h3>Managed Kubernetes, less toil</h3>
-          <p>We handle upgrades and operations with a 99.95% SLA so your team can focus on apps.</p>
-        </article>
-        <article class="feature" tabindex="0">
-          <h3>Predictable pricing &amp; support</h3>
-          <p>Flat fees and Swedish engineers on-call deliver financial and operational clarity.</p>
-        </article>
-      </div>
-    </section>
-    <section class="video-section" id="videos" aria-label="Platform demo videos">
-      <h2>See the platform in action</h2>
-      <p>Short demos showing how teams build, scale, and secure workloads.</p>
-      <div class="carousel" aria-label="Video carousel">
-        <button class="prev" aria-label="Previous video">&#10094;</button>
-        <div class="track">
-          <div class="slide">
-            <iframe loading="lazy" title="Demo video 1" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-          </div>
-          <div class="slide">
-            <iframe loading="lazy" title="Demo video 2" src="https://www.youtube.com/embed/9bZkp7q19f0" allowfullscreen></iframe>
-          </div>
-          <div class="slide">
-            <iframe loading="lazy" title="Demo video 3" src="https://www.youtube.com/embed/3GwjfUFyY6M" allowfullscreen></iframe>
-          </div>
-          <div class="slide">
-            <iframe loading="lazy" title="Demo video 4" src="https://www.youtube.com/embed/oHg5SJYRHA0" allowfullscreen></iframe>
-          </div>
+    <section class="hero">
+      <div class="wrap hero-content">
+        <h1 class="reveal">Run Kubernetes in a sovereign Swedish cloud</h1>
+        <p class="subhead reveal">Safespring manages the platform so your team ships faster—Swedish data residency, enterprise SLAs, and local experts included.</p>
+        <div class="cta-row reveal">
+          <a class="btn btn-primary" href="#video">Book a demo</a>
+          <a class="btn btn-ghost" href="#features">Explore benefits</a>
         </div>
-        <button class="next" aria-label="Next video">&#10095;</button>
       </div>
     </section>
-    <section class="cta-strip">
-      <h2>Ready to build in Sweden's trusted cloud?</h2>
-      <a class="btn" href="mailto:info@safespring.com">Talk to an expert</a>
+    <section id="features" class="section features">
+      <div class="wrap">
+        <h2 class="reveal">Built for teams that value control, speed, and compliance</h2>
+        <p class="reveal">Get managed Kubernetes with observability, backups, and 24/7 support—delivered from Swedish data centers for compliance and peace of mind.</p>
+        <div class="card-grid">
+          <article class="card reveal">
+            <h3>Sovereign and compliant</h3>
+            <p>Your data stays in Sweden. Operations follow GDPR best practices with contracts under Swedish jurisdiction.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Managed Kubernetes, less toil</h3>
+            <p>We handle cluster lifecycle, patches, upgrades, monitoring, and backups—so engineers focus on apps, not infrastructure.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Predictable pricing and expert support</h3>
+            <p>Transparent pricing with no surprise bills. Local specialists help design, migrate, and operate with SLAs that match your needs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="video" class="section video-section">
+      <div class="wrap">
+        <h2 class="reveal">See the platform in action</h2>
+        <p class="reveal">In a short overview, we walk through cluster creation, autoscaling, and observability—showing how Safespring accelerates secure delivery.</p>
+        <figure class="video-frame reveal">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&auto=format&fit=crop&w=1920&h=1080" alt="Demo video placeholder" loading="lazy">
+          <figcaption class="play-badge">3-minute demo</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="section cta-strip">
+      <div class="wrap cta-box">
+        <h2>Move from maintaining platforms to delivering value</h2>
+        <p>Schedule time with a Safespring engineer to discuss architecture, migration, and costs.</p>
+        <a class="btn btn-primary" href="#contact">Talk to an expert</a>
+      </div>
     </section>
   </main>
-  <footer>
-    <p>&copy; 2025 Safespring. Demo page for evaluation purposes.</p>
-    <p>Photo by Taylor Vick on Unsplash.</p>
+  <footer id="contact" class="section">
+    <div class="wrap">
+      <h3>Safespring</h3>
+      <p>Reliable cloud services from Sweden. Managed Kubernetes platform with Swedish data residency and enterprise support.</p>
+      <p>Photo credits: Unsplash (placeholder).</p>
+    </div>
   </footer>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Safespring","url":"https://www.safespring.com"}
+  </script>
   <script>
-    // IntersectionObserver for feature cards
-    const features = document.querySelectorAll('.feature');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', ()=>{if(window.scrollY>8) header.classList.add('scrolled'); else header.classList.remove('scrolled');});
+    const items=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}
       });
-    }, { threshold: 0.1 });
-    features.forEach(f => observer.observe(f));
-
-    // Carousel functionality
-    const track = document.querySelector('.track');
-    const slides = Array.from(track.children);
-    let index = 0;
-    function updateCarousel() {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }
-    document.querySelector('.next').addEventListener('click', () => {
-      index = (index + 1) % slides.length;
-      updateCarousel();
-    });
-    document.querySelector('.prev').addEventListener('click', () => {
-      index = (index - 1 + slides.length) % slides.length;
-      updateCarousel();
-    });
+    },{threshold:0.12});
+    items.forEach(el=>observer.observe(el));
   </script>
 </body>
 </html>
